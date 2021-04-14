@@ -28,3 +28,25 @@
 .traffic-light .bulb.active {
     opacity: 1;
 }
+
+.container {
+    text-align: center;
+}
+
+.reset-traffic-light {
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color:red;
+    color: white;
+    border: none;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
+    outline: none;
+    opacity: 0.7;
+}
+
+.reset-traffic-light:hover {
+    opacity: 1;
+}
+

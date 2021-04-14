@@ -10,7 +10,9 @@ class App extends React.Component {
         this.state = {
             currentColor: COLOR.RED
         };
+    }
 
+    componentDidMount() {
         setInterval(function() {
             this.setState({ currentColor: this.handleGetNextColor(this.state.currentColor) });
         }.bind(this), 1000);
@@ -32,8 +34,15 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="traffic-light">
-                <TrafficLight currentColor={this.state.currentColor}/>
+            <div className="container">
+                <div className="traffic-light">
+                    <TrafficLight currentColor={this.state.currentColor}/>
+                </div>
+                <button className="reset-traffic-light" type="button" onClick={()=> {
+                    this.setState({
+                        currentColor: COLOR.RED
+                    });
+                }}>Reset</button>
             </div>
         );
     }
