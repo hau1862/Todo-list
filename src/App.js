@@ -1,48 +1,44 @@
 import React from "react";
 import './App.css';
-import COLOR from "./config.js";
-import TrafficLight from "./component/TrafficLight";
+import AddItem from "./component/AddItem";
+import TodoList from "./component/TodoList";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            currentColor: COLOR.RED
+            listTask: [
+                { content: "Play Game", isDone: false },
+                { content: "Go to bed", isDone: false }
+            ]
         };
+
+        this.handleAddItem = this.handleAddItem.bind(this);
+        this.handleUpdateListTask = this.handleUpdateListTask.bind(this);
     }
 
-    componentDidMount() {
-        setInterval(function() {
-            this.setState({ currentColor: this.handleGetNextColor(this.state.currentColor) });
-        }.bind(this), 1000);
+    handleAddItem(newItem) {
+        const { listTask } = this.state;
+
+        this.setState({
+            listTask: listTask.concat(newItem)
+        })
     }
 
-    handleGetNextColor(currentColor) {
-        switch(currentColor) {
-            case COLOR.RED: {
-                return COLOR.YELLOW;
-            }
-            case COLOR.YELLOW: {
-                return COLOR.GREEN;
-            }
-            default: {
-                return COLOR.RED;
-            }
-        }
+    handleUpdateListTask(newListTask) {
+        this.setState({
+            listTask: newListTask
+        })
     }
 
     render() {
+        const { listTask } = this.state;
         return (
             <div className="container">
-                <div className="traffic-light">
-                    <TrafficLight currentColor={this.state.currentColor}/>
-                </div>
-                <button className="reset-traffic-light" type="button" onClick={()=> {
-                    this.setState({
-                        currentColor: COLOR.RED
-                    });
-                }}>Reset</button>
+                <div className="header">TODO APP</div>
+                <AddItem handleAddItem={ this.handleAddItem }/>
+                <TodoList listTask={listTask} handleUpdateListTask={this.handleUpdateListTask}/>
             </div>
         );
     }
