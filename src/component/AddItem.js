@@ -17,7 +17,7 @@ class AddItem extends React.Component {
                 content: this.state.content,
                 isDone: false
             };
-
+            event.target.value = "";
             this.props.handleAddItem(newItem);
         }
         else {

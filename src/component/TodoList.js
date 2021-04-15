@@ -5,26 +5,22 @@ class TodoList extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            listTask: this.props.listTask
-        }
-
         this.handleDeleteItem = this.handleDeleteItem.bind(this);
         this.handleSaveItem = this.handleSaveItem.bind(this);
     }
 
-    handleDeleteItem(item) {
-        const { listTask } = this.state;
-        const index = listTask.indexOf(item);
-
-        this.props.handleUpdateListTask([...listTask.slice(0, index), ...listTask.slice(index + 1)]);
+    handleDeleteItem(index) {
+        return () => {
+            const { listTask } = this.props;
+            this.props.handleUpdateListTask([...listTask.slice(0, index), ...listTask.slice(index + 1)]);
+        }      
     }
 
-    handleSaveItem(item) {
-        const { listTask } = this.state;
-        const index = listTask.indexOf(item);
-
-        this.props.handleUpdateListTask([...listTask.slice(0, index), item, ...listTask.slice(index + 1)]);
+    handleSaveItem(index) {
+        return (item) => {
+            const { listTask } = this.props;
+            this.props.handleUpdateListTask([...listTask.slice(0, index), item, ...listTask.slice(index + 1)]);
+        }
     }
 
     render() {
@@ -34,7 +30,7 @@ class TodoList extends React.Component {
             <div className="todo-list">
                 {
                     listTask.map((task, index) => {
-                        return <TodoItem task={task} key={index} handleDeleteItem={this.handleDeleteItem} handleSaveItem={this.handleSaveItem}/>;
+                        return <TodoItem task={task} key={index} handleDeleteItem={this.handleDeleteItem(index)} handleSaveItem={this.handleSaveItem(index)}/>;
                     })
                 }
             </div>

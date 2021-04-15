@@ -36,7 +36,7 @@ class App extends React.Component {
         const { listTask } = this.state;
         return (
             <div className="container">
-                <div className="header">TODO APP</div>
+                <div className="todo-heading">TODO APP</div>
                 <AddItem handleAddItem={ this.handleAddItem }/>
                 <TodoList listTask={listTask} handleUpdateListTask={this.handleUpdateListTask}/>
             </div>

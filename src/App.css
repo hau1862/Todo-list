@@ -1,52 +1,23 @@
-.traffic-light {
-    height: 220px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.traffic-light .bulb {
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
-    opacity: 0.2;
-}
-
-.traffic-light .bulb.red {
-    background-color: red;
-}
-
-.traffic-light .bulb.yellow {
-    background-color: yellow;
-}
-
-.traffic-light .bulb.green {
-    background-color: green;
-}
-
-.traffic-light .bulb.active {
-    opacity: 1;
-}
-
 .container {
     text-align: center;
 }
 
-.reset-traffic-light {
-    margin-top: 20px;
-    font-size: 20px;
-    padding: 8px 16px;
-    border-radius: 4px;
-    background-color:red;
-    color: white;
-    border: none;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
-    outline: none;
-    opacity: 0.7;
+.todo-heading {
+
 }
 
-.reset-traffic-light:hover {
-    opacity: 1;
+.todo-list {
+
 }
 
+.todo-list .todo-item {
+
+}
+
+.todo-item.todo-item--done {
+    text-decoration: line-through;
+}
+
+.todo-item.todo-item--edit {
+
+}
