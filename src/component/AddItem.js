@@ -4,31 +4,38 @@ class AddItem extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            content: ""
-        }
-
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleClickAll = this.handleClickAll.bind(this);
     }
 
-    handleKeyPress(event) {
+    handleKeyPress(event) {        
         if(event.charCode === 13) {
-            const newItem = {
-                content: this.state.content,
-                isDone: false
-            };
+            const content = event.target.value.trim();
+            if(content) {
+                const newItem = {
+                    content,
+                    isDone: false
+                };
+                this.props.handleAddItem(newItem);
+            }
             event.target.value = "";
-            this.props.handleAddItem(newItem);
+        }
+    }
+
+    handleClickAll(event) {
+        if(event.target.checked) {
+            this.props.handleCompleteAllTask();
         }
         else {
-            this.setState({ content: event.target.value });
+            this.props.handleIncompleteAllTask();
         }
     }
 
     render() {
         return (
-            <div className="add-item">
-                <input type="text" onKeyPress={this.handleKeyPress} />
+            <div className="todo-add">
+                <input type="checkbox" checked={this.props.checkAllTask} className="todo-add__check" onClick={this.handleClickAll}/>
+                <input className="todo-add__input" placeholder="Enter new task" type="text" onKeyPress={this.handleKeyPress} />
             </div>
         );
     }
