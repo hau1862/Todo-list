@@ -18,6 +18,11 @@ const Lib = {
         result = result.trim();
         return result;
     },
+    FILTER: {
+        ALL: 0,
+        ACTIVE: 1,
+        DONE: 2
+    }
 }
 
 export default Lib;

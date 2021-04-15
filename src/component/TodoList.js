@@ -7,6 +7,7 @@ class TodoList extends React.Component {
 
         this.handleDeleteItem = this.handleDeleteItem.bind(this);
         this.handleSaveItem = this.handleSaveItem.bind(this);
+        this.handleShowListTask = this.handleShowListTask.bind(this);
     }
 
     handleDeleteItem(index) {
@@ -23,15 +24,25 @@ class TodoList extends React.Component {
         }
     }
 
-    render() {
+    handleShowListTask() {
         const listTask = this.props.listTask;
+
+        if(listTask.length > 0) {
+            return listTask.map((task, index) => {
+                return <TodoItem task={task} key={index} handleDeleteItem={this.handleDeleteItem(index)} handleSaveItem={this.handleSaveItem(index)}/>;
+            })
+        }
+        else {
+            return <div className="todo-item">No Task</div>;
+        }
+    }
+
+    render() {
         
         return (
             <div className="todo-list">
                 {
-                    listTask.map((task, index) => {
-                        return <TodoItem task={task} key={index} handleDeleteItem={this.handleDeleteItem(index)} handleSaveItem={this.handleSaveItem(index)}/>;
-                    })
+                  this.handleShowListTask() 
                 }
             </div>
         );

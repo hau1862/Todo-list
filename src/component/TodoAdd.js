@@ -1,6 +1,6 @@
 import React from "react";
 
-class AddItem extends React.Component {
+class TodoAdd extends React.Component {
     constructor(props) {
         super(props);
 
@@ -34,11 +34,11 @@ class AddItem extends React.Component {
     render() {
         return (
             <div className="todo-add">
-                <input type="checkbox" checked={this.props.checkAllTask} className="todo-add__check" onClick={this.handleClickAll}/>
+                <input type="checkbox" checked={this.props.checkAllTask} className="todo-add__check" onChange={this.handleClickAll}/>
                 <input className="todo-add__input" placeholder="Enter new task" type="text" onKeyPress={this.handleKeyPress} />
             </div>
         );
     }
 }
 
-export default AddItem;
+export default TodoAdd;

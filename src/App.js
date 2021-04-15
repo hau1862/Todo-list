@@ -1,13 +1,18 @@
 import React from "react";
 import './App.css';
-import AddItem from "./component/AddItem";
+import TodoAdd from "./component/TodoAdd";
 import TodoList from "./component/TodoList";
+import TodoFilter from "./component/TodoFilter";
+import Lib from "./lib";
+
+const { FILTER } = Lib;
 
 class App extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            filter: FILTER.ALL,
             listTask: [
                 { content: "Play Game", isDone: false },
                 { content: "Go to bed", isDone: false }
@@ -19,6 +24,10 @@ class App extends React.Component {
         this.handleCompleteAllTask = this.handleCompleteAllTask.bind(this);
         this.handleIncompleteAllTask = this.handleIncompleteAllTask.bind(this);
         this.handleCheckAllTask = this.handleCheckAllTask.bind(this);
+        this.handleCheckFilter = this.handleCheckFilter.bind(this);
+        this.handleSetFilter = this.handleSetFilter.bind(this);
+        this.handleClearAllTask = this.handleClearAllTask.bind(this);
+        this.handleCountActiveTask = this.handleCountActiveTask.bind(this);
     }
 
     handleAddItem(newItem) {
@@ -55,22 +64,68 @@ class App extends React.Component {
         this.setState({ listTask });
     }
 
+    handleSetFilter(newFilter) {
+        this.setState({
+            // ...this.state,
+            filter: newFilter
+        });
+    }
+
     handleCheckAllTask() {
         const { listTask } = this.state;
-        return listTask.every(function(task) {
-            return task.isDone;
+        if(listTask.length > 0) {
+            return listTask.every(function(task) {
+                return task.isDone;
+            });
+        }
+        else {
+            return false;
+        }
+    }
+
+    handleCountActiveTask() {
+        return this.state.listTask.filter(function(task) {
+            return !task.isDone;
+        }).length;
+    }
+
+    handleCheckFilter(item) {
+        switch(this.state.filter) {
+            case FILTER.ALL: {
+                return true;
+            }
+            case FILTER.ACTIVE: {
+                return !item.isDone;
+            }
+            case FILTER.DONE: {
+                return item.isDone;
+            }
+            default: {
+                return true;
+            }
+        }
+    }
+
+    handleClearAllTask() {
+        this.setState({
+            listTask: []
         });
     }
 
     render() {
-        const { listTask } = this.state;
-        
+        const listTask = this.state.listTask.filter(this.handleCheckFilter);
+
         return (
             <div className="container">
-                <div className="todo-heading">TODO APP</div>
+                <div className="todo-header">
+                    <div className="todo-heading">TODO APP</div>
+                    <TodoAdd handleAddItem={ this.handleAddItem } handleCompleteAllTask={this.handleCompleteAllTask} handleIncompleteAllTask={this.handleIncompleteAllTask} checkAllTask={this.handleCheckAllTask()}/>
+                </div>
                 <div className="todo-body">
-                    <AddItem handleAddItem={ this.handleAddItem } handleCompleteAllTask={this.handleCompleteAllTask} handleIncompleteAllTask={this.handleIncompleteAllTask} checkAllTask={this.handleCheckAllTask()}/>
                     <TodoList listTask={listTask} handleUpdateListTask={this.handleUpdateListTask}/>
+                </div>
+                <div className="todo-footer">
+                    <TodoFilter numberActiveTask={this.handleCountActiveTask()} handleSetFilter={this.handleSetFilter} handleClearAllTask={this.handleClearAllTask}/>
                 </div>
             </div>
         );

@@ -1,5 +1,12 @@
 .container {
     text-align: center;
+    width: 60vw;
+    max-width: 600px;
+    margin: auto;
+}
+
+.todo-header {
+    
 }
 
 .todo-heading {
@@ -7,18 +14,13 @@
     color: #666;
 }
 
-.todo-body {
-    border: 1px solid #ccc;
-    display: inline-block;
-    width: 50vw;
-    max-width: 400px;
-}
-
 .todo-add {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
+    border: 2px solid #666;
+    border-bottom-width: 1px;
 }
+
 
 .todo-add .todo-add__check {
     display: block;
@@ -36,23 +38,28 @@
     outline: none;
     padding: 0 8px;
     flex: 1;
-    border: 0 solid #ccc;
-    border-left-width: 1px;
+    border: none;
+}
+
+.todo-body {
+    border: 1px solid #666;
 }
 
 .todo-list {
-
+    width: 100%;
 }
 
 .todo-list .todo-item {
     font-size: 24px;
     color: #666;
-    border: 1px solid #ccc;
+    border: 1px solid #666;
     border-top-width: 0px;
     display: flex;
     flex-direction: row;
     line-height: 48px;
     align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .todo-item .todo-item__check {
@@ -85,6 +92,68 @@
     text-decoration: line-through;
 }
 
-.todo-item.todo-item--edit {
+.todo-footer {
+    border: 2px solid #666;
+    border-top-width: 0px;
+    color: #666;
+    padding: 8px;
+}
+
+.todo-filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo-task-left {
+    user-select: none;
+    width: 80px;
+}
+
+.todo-filter-list {
+    text-align: center;
+    flex: 1;
+}
+
+.todo-filter__item {
+    border: 1px black solid;
+    border-radius: 4px;
+    padding: 2px 0;
+    width: 64px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.todo-filter__item--all {
 
 }
+
+.todo-filter__item--active {
+
+}
+
+.todo-filter__item--done {
+
+}
+
+.todo-clear-all {
+    width: 72px;
+    cursor: pointer;
+    border: 1px black solid;
+    border-radius: 4px;
+    padding: 2px 0;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    .todo-filter__item {
+        display: block;
+        margin: auto;
+    }
+    .todo-filter__item--active {
+        margin: 8px auto;
+    }
+}
+

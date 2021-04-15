@@ -68,7 +68,7 @@ class TodoItem extends React.Component {
         const className = Lib.classNames("todo-item", { "todo-item--done": isDone });
         return (
             <div className={ className }>
-                <input type="checkbox" checked={isDone} className="todo-item__check" onClick={ this.handleClickTask }/>
+                <input type="checkbox" checked={isDone} className="todo-item__check" onChange={ this.handleClickTask }/>
                 <p className="todo-item__content" onDoubleClick={this.handleRequireChangeContent} onKeyPress={this.handleEditContent} onBlur={this.handleChangeContent}>{content}</p>
                 <div className="todo-item__delete" onClick={this.props.handleDeleteItem}>x</div>
             </div>
