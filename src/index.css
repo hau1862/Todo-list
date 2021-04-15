@@ -15,7 +15,3 @@ code {
 * {
   box-sizing: border-box;
 }
-
-#root {
-  margin-top: 12vh;
-}

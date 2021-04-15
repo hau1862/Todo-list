@@ -1,8 +1,8 @@
 import React from "react";
 import './App.css';
-import TodoAdd from "./component/TodoAdd";
-import TodoList from "./component/TodoList";
-import TodoFilter from "./component/TodoFilter";
+import TodoAdd from "./components/TodoAdd";
+import TodoList from "./components/TodoList";
+import TodoFilter from "./components/TodoFilter";
 import Lib from "./lib";
 
 const { FILTER } = Lib;
@@ -117,8 +117,8 @@ class App extends React.Component {
 
         return (
             <div className="container">
+                <div className="todo-heading">TODO APP</div>
                 <div className="todo-header">
-                    <div className="todo-heading">TODO APP</div>
                     <TodoAdd handleAddItem={ this.handleAddItem } handleCompleteAllTask={this.handleCompleteAllTask} handleIncompleteAllTask={this.handleIncompleteAllTask} checkAllTask={this.handleCheckAllTask()}/>
                 </div>
                 <div className="todo-body">
